@@ -8,32 +8,45 @@
 import axios from "axios";
 import moment from "moment"
 import CasosTotal from "../components/CasosTotal.vue"
+import Timeline from "../components/Timeline.vue"
 
 export default {
   name: "PageIndex",
   components: {
-    CasosTotal
+    CasosTotal,
+    Timeline
   },
   data() {
     return {
       fetch: {},
       latest: {},
-      updated_at: ''
+      historical: {},
+      updated_at: ""
     };
   },
   methods: {
-    async fetchBrasil(){
-      return await axios.get('https://coronavirus-tracker-api.herokuapp.com/v2/locations/35')
+    async fetchLatest(){
+      return await axios.get('https://corona.lmao.ninja/countries/brazil')
+    },
+    async fetchHistorical(){
+      return await axios.get('https://corona.lmao.ninja/historical')
     },
     async formatDate(date){
       return moment(date).format("DD/MM/YYYY")
+    },
+    formatHistorical(historic){
+      let brazil = historic.filter(country => {
+        return country.country === 'Brazil'
+      })
+
+      console.log(brazil)
     }
   },
   async mounted() {
-    this.fetch = await this.fetchBrasil()
-    let dateTemp = await this.fetch.data.location.last_updated
-    this.updated_at = await this.formatDate(dateTemp) ;
-    this.latest = this.fetch.data.location.latest
+    this.fetch = await this.fetchLatest()
+    this.historical = await this.fetchHistorical() ;
+    this.formatHistorical(this.historical.data)
+    this.updated_at = this.formatDate(new Date()) ;
   }
 };
 </script>

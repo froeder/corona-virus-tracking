@@ -8,8 +8,10 @@
       </q-card-section>
       <q-card-section>
         <div class="text-h6">Últimos casos</div>
-        <div class="text-weight-regular">Confirmados: <strong>{{latest.confirmed}}</strong></div>
+        <div class="text-weight-regular">Confirmados: <strong>{{latest.cases}}</strong></div>
+        <div class="text-weight-regular">Confirmados hoje: <strong>{{latest.todayCases}}</strong></div>
         <div class="text-weight-regular">Mortes: <strong>{{latest.deaths}}</strong></div>
+        <div class="text-weight-regular">Mortes no dia: <strong>{{latest.todayDeaths}}</strong></div>
         <div class="text-weight-regular">Recuperados: <strong>{{latest.recovered}}</strong></div>
       </q-card-section>
     </q-card>
