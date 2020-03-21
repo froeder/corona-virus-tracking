@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout style="background-color: #7a776f" view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -23,56 +23,56 @@
       bordered
       content-class="bg-grey-1"
     >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-       Menu
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+      <q-list v-for="m in menu" v-bind:key="m.label">
+        <q-item clickable @click="routeTo(m.routeName)">
+          <q-item-section avatar>
+            <q-icon :name="m.icon" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>{{ m.label }}</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
-    <q-footer>
-      Teste
+    <q-footer style="padding:.3em">
+      <small>Developer by Jhonatan Froeder</small>
     </q-footer>
   </q-layout>
 </template>
 
 <script>
-import EssentialLink from 'components/EssentialLink'
-
 export default {
-  name: 'MainLayout',
+  name: "MainLayout",
 
-  components: {
-    EssentialLink
-  },
+  components: {},
 
-  data () {
+  data() {
     return {
       leftDrawerOpen: false,
-      essentialLinks: [
+      menu: [
         {
-          title: 'Home',
-          icon: 'home',
-          rotue: 'HomePage'
+          label: "Home",
+          routeName: "HomeScreen",
+          icon: "home"
         },
         {
-          title: 'Sobre',
-          icon: 'info',
-          route: 'AboutPage '
+          label: "Sobre",
+          routeName: "AboutScreen",
+          icon: "info"
         }
       ]
+    };
+  },
+  methods :{
+    routeTo(routeName){
+      console.log(routeName)
+      this.$router.push({name: routeName})
     }
   }
-}
+};
 </script>
