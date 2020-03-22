@@ -43,7 +43,7 @@ module.exports = function (ctx) {
       //            (not treeshaking Quasar; biggest bundle size; convenient)
       all: 'auto',
 
-      components: [],
+      components: ['QSlideTransition'],
       directives: [],
 
       // Quasar plugins
@@ -80,7 +80,7 @@ module.exports = function (ctx) {
 
     // animations: 'all', // --- includes all animations
     // https://quasar.dev/options/animations
-    animations: [],
+    animations: ['fadeIn', 'fadeOut', 'fadeInRight', 'zoomIn', 'zoomOut'],
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {

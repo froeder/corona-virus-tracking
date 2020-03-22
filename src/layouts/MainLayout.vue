@@ -37,7 +37,14 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <transition
+        name="transitions"
+        enter-active-class="animated zoomIn"
+        leave-active-class="animated zoomOut"
+        mode="out-in"
+      >
+        <router-view />
+      </transition>
     </q-page-container>
     <q-footer style="padding:.3em">
       <small>Developer by Jhonatan Froeder</small>
@@ -68,10 +75,10 @@ export default {
       ]
     };
   },
-  methods :{
-    routeTo(routeName){
-      console.log(routeName)
-      this.$router.push({name: routeName})
+  methods: {
+    routeTo(routeName) {
+      console.log(routeName);
+      this.$router.push({ name: routeName });
     }
   }
 };
