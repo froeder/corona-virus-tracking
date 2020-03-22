@@ -18,6 +18,7 @@
       </div>
     </div>
     <Timeline v-if="loadedHistorical" style="margin-top:3em" v-bind:brazil="brazil"></Timeline>
+    <div v-if="latest.erro">{{latest}}</div>
   </q-page>
 </template>
 
@@ -46,7 +47,16 @@ export default {
   },
   methods: {
     async fetchLatest() {
-      return await axios.get("https://corona.lmao.ninja/countries/brazil");
+      let response = {}
+      await axios.get("https://corona.lmao.ninja/countries/brazil").then(res => {
+        if(res.status === 200){
+          response = res.data
+        } else {
+          return {erro: 'erro', data: res}
+        }
+      });
+      
+      return response
     },
     async fetchHistorical() {
       return await axios.get("https://corona.lmao.ninja/historical");
@@ -62,7 +72,7 @@ export default {
   },
   async mounted() {
     this.fetch = await this.fetchLatest();
-    this.latest = this.fetch.data;
+    this.latest = this.fetch;
     if (this.latest) {
       this.loadedCases = true;
     }
