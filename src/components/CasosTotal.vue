@@ -1,18 +1,17 @@
 <template>
-    <q-card style="background-color:rgba(255,0,0,0.2)">
+    <q-card>
       <q-card-section>
         <div class="text-h6 text-center">Casos no Brasil</div>
         <div class="text-subtitle-2 text-weight-thin text-center">
           Atualizado em: {{updated_at}}
         </div>
       </q-card-section>
-      <q-card-section>
-        <div class="text-h6">Últimos casos</div>
-        <div class="text-weight-regular">Confirmados: <strong>{{latest.cases}}</strong></div>
-        <div class="text-weight-regular">Confirmados hoje: <strong>{{latest.todayCases}}</strong></div>
-        <div class="text-weight-regular">Mortes: <strong>{{latest.deaths}}</strong></div>
-        <div class="text-weight-regular">Mortes no dia: <strong>{{latest.todayDeaths}}</strong></div>
-        <div class="text-weight-regular">Recuperados: <strong>{{latest.recovered}}</strong></div>
+      <q-card-section class="text-center">
+        <div class="text-weight-regular badgeDiv">Confirmados:  <q-badge class="badge" color="red">{{latest.cases}}</q-badge></div> 
+        <div class="text-weight-regular badgeDiv">Confirmados hoje: <q-badge class="badge" color="red">{{latest.todayCases}}</q-badge></div>
+        <div class="text-weight-regular badgeDiv">Mortes: <q-badge class="badge" color="red">{{latest.deaths}}</q-badge></div>
+        <div class="text-weight-regular badgeDiv">Mortes no dia: <q-badge class="badge" color="red">{{latest.todayDeaths}}</q-badge></div>
+        <div class="text-weight-regular badgeDiv">Recuperados: <q-badge class="badge" color="red">{{latest.recovered}}</q-badge></div>
       </q-card-section>
     </q-card>
 </template>
@@ -23,3 +22,14 @@ export default {
     props: ['updated_at', 'latest']
 }
 </script>
+
+<style lang="stylus">
+  .badge{
+    padding:.5em ; 
+    font-size:1em ;
+    font-weight:900
+  } 
+  .badgeDiv{
+    margin-top:1em
+  }
+</style>
