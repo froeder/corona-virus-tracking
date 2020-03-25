@@ -3,7 +3,7 @@
         <q-card-section>
             <div class="text-h6 text-center">Evolução dos casos </div>
             <div class="text-center text-subtitle2 text-weight-light">Desde o primeiro caso confirmado</div>
-            <EvolutionChart v-bind:cases="cases"></EvolutionChart>
+            <EvolutionChart v-bind:cases="cases" v-bind:deaths="deaths"></EvolutionChart>
         </q-card-section>
     </q-card>
 </template>

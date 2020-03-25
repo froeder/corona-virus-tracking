@@ -10,18 +10,19 @@ import moment from "moment" ;
 
 export default {
   name: "EvolutionChart",
-  props: ["cases"],
+  props: ["cases", "deaths"],
   components: {
     GChart
   },
   data() {
     return {
       datas: Object.keys(this.cases),
-      values: Object.values(this.cases),
-      chartDatas: [["", "Casos"]],
+      valuesCases: Object.values(this.cases),
+      valuesDeaths: Object.values(this.deaths),
+      chartDatas: [["", "Casos", "Mortes"]],
       chartData: [],
       chartOptions: {
-        colors: ['red'],
+        colors: ['red', 'black'],
         legend: { position: 'bottom' },
         chart: {
           title: "Company Performance",
@@ -33,7 +34,7 @@ export default {
   mounted() {
     const size = this.datas.length ;
     for(let i = 35 ; i < size ; i++){
-      this.chartDatas.push([moment(this.datas[i]).format('DD/MM/YYYY'), parseInt(this.values[i])])
+      this.chartDatas.push([moment(this.datas[i]).format('DD/MM/YYYY'), parseInt(this.valuesCases[i]), parseInt(this.valuesDeaths[i])])
     }
     this.chartData = this.chartDatas
   }

@@ -66,7 +66,7 @@ export default {
     },
     async formatHistorical(historic) {
       return historic.filter(country => {
-        return country.country === "Brazil";
+        return country.country === "brazil";
       });
     }
   },
@@ -78,6 +78,8 @@ export default {
     }
     this.historical = await this.fetchHistorical();
     this.brazil = await this.formatHistorical(this.historical.data);
+    console.log("BRASIL") ;
+    console.log(this.brazil) ;
     if (this.brazil) {
       this.loadedHistorical = true;
     }
